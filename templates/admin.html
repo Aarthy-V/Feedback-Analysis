@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Feedback System</title>
+  <script src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawDepartmentChart);
+    google.charts.setOnLoadCallback(drawLecturerChart);
+
+    function drawDepartmentChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Category', 'Positive', 'Negative', 'Neutral'],
+        ['Guidance', {{tp}}, {{tn}}, {{tneu}}],
+        ['CourseContent', {{cp}}, {{cn}}, {{cneu}}],
+        ['Examination', {{ep}}, {{en}}, {{eneu}}],
+        ['Lab Work', {{lwp}}, {{lwn}}, {{lwneu}}],
+        ['Library Facilities', {{lfp}}, {{lfn}}, {{lfneu}}],
+        ['Extra Curriculars', {{ecp}}, {{ecn}}, {{ecneu}}]
+      ]);
+
+      var options = {
+        title: 'Departmentwise Sentiments',
+        subtitle: 'Sentiment count',
+        chartArea: { width: '80%' },
+        colors: ['#4CAF50', '#FF5733', '#FFC300'],
+        hAxis: { title: 'Sentiments', titleTextStyle: { color: '#333' } },
+        vAxis: { minValue: 0 }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('department_chart'));
+
+      chart.draw(data, options);
+    }
+
+    function drawLecturerChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Lecturer', 'Positive', 'Negative', 'Neutral'],
+        ['Lecturer 1', {{ttp}}, {{ttn}}, {{ttneu}}],
+        ['Lecturer 2', {{tcp}}, {{tcn}}, {{tcneu}}],
+        ['Lecturer 3', {{tep}}, {{ten}}, {{teneu}}],
+        ['Lecturer 4', {{tlwp}}, {{tlwn}}, {{tlwneu}}],
+        ['Lecturer 5', {{tlfp}}, {{tlfn}}, {{tlfneu}}],
+        ['Lecturer 6', {{tecp}}, {{tecn}}, {{tecneu}}]
+      ]);
+
+      var options = {
+        title: 'Lecturer Feedback Sentiments',
+        subtitle: 'Sentiment count',
+        chartArea: { width: '80%' },
+        colors: ['#4CAF50', '#FF5733', '#FFC300'],
+        hAxis: { title: 'Sentiments', titleTextStyle: { color: '#333' } },
+        vAxis: { minValue: 0 }
+      };
+
+      var chart = new google.visualization.BarChart(document.getElementById('lecturer_chart'));
+
+      chart.draw(data, options);
+    }
+  </script>
+  <style>
+    /* Add your styles here */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+
+    header {
+      background-color: #007bff;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+    }
+
+    .chart-container {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+    }
+
+    nav {
+      background-color: #343a40;
+      padding: 10px;
+      color: white;
+      text-align: center;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Feedback System</h1>
+  </header>
+
+  <nav class="nav-menu d-none d-lg-block">
+    <ul class="nav-inner">
+      <li class="active"><a href="/">Home</a></li>
+      <li><a href="#about">Feedback</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="/login">Login</a></li>
+
+    </ul>
+  </nav><!-- .nav-menu -->
+
+  <main>
+    <section>
+      <h2>Department Dashboard</h2>
+      <div id="department_chart" class="chart-container"></div>
+    </section>
+
+    <section>
+      <h2>Staff Dashboard</h2>
+      <div id="lecturer_chart" class="chart-container"></div>
+      <!-- Add content for Staff Dashboard here -->
+    </section>
+  </main>
+</body>
+
+</html>
